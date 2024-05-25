@@ -1,0 +1,5 @@
+//#base "addon/items/item_base.txt"
+
+"DOTAAbilities"
+{
+}

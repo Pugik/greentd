@@ -1,0 +1,42 @@
+-- pugiko: https://steamcommunity.com/id/pepegi7/
+-- #============================================#
+
+-- Gamemode Setup
+GAME_SAFE_TO_LEAVE = true
+GAME_AUTO_LAUNCH = true
+GAME_AUTO_LAUNCH_DELAY = 1
+
+GAME_ALLOW_SAME_HERO_SELECTION = false
+GAME_HERO_RESPAWN_ENABLED = true
+GAME_FORCE_HERO = ""
+
+GAME_DOTARUNE_LOGIC = true
+GAME_FREE_COURIER_ENABLED = true
+
+GAME_DAYNIGHT_DISABLED = false
+GAME_FOG_DISABLED = false
+GAME_FOG_EXPLORER_ENABLED = false
+	
+-- Pre Timers
+GAME_HERO_SELECTION_TIME = 0
+GAME_HERO_SELECTION_PENALTY = 0
+GAME_HERO_STRATEGY_TIME = 0
+GAME_HERO_SHOWCASE_TIME = 0
+
+-- Main Timers
+GAME_PRE_TIME = 120
+GAME_POST_TIME = 30
+
+-- Announcer 
+ANNOUNCER_DISABLED = true
+ANNOUNCER_GAMEMODE_DISABLED =  true
+ANNOUNCER_KILLING_SPREE_DISABLED = false
+
+-- Camera
+CAMERA_Z_MIN = 0
+CAMERA_Z_MAX = 8192
+CAMERA_DISTANCE = 2000
+
+if IsInToolsMode() then
+	GAME_FORCE_HERO = "npc_dota_hero_wisp"
+end

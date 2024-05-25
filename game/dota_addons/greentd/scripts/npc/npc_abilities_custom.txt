@@ -1,0 +1,22 @@
+"DOTAAbilities"
+{
+    "ability_build_tower"
+    {
+        "BaseClass"						"ability_lua"
+        "ScriptFile"					"addon/abilities/ability_build_tower.lua"
+        //"AbilityTextureName"			"pyromancer_dragonfire"
+        "FightRecapLevel"				"1"
+        "MaxLevel"						"1"
+
+        "AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_NONE"	
+
+        "AbilityCastRange"				"1024"
+
+        "AbilityValues"
+        {
+            "price"		"100"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+#base "addon/units/creeps.txt"
+#base "addon/units/towers.txt"
+
+"DOTAUnits"
+{
+}
