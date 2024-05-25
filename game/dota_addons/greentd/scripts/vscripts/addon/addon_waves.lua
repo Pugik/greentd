@@ -4,21 +4,15 @@ local waveInterval = 30
 local waves = {
     {
         creeps = {"tiny_zombie"},
-        count = 100,
-        health_mult = 0.5,
-        movespeed_mult = 0.5,
+        count = 100
     },
     {
         creeps = {"tiny_zombie"},
-        count = 10,
-        health_mult = 2,
-        movespeed_mult = 2,
+        count = 10
     },
     {
         creeps = {"tiny_zombie"},
-        count = 25,
-        health_mult = 4,
-        movespeed_mult = 4,
+        count = 25
     }
 }
 
@@ -33,8 +27,6 @@ function _ADDON:StartNextWave()
     local waveData = waves[self.currentWave]
     local creeps = waveData.creeps
     local count = waveData.count
-    local health_mult = waveData.health_mult
-    local movespeed_mult = waveData.movespeed_mult
     local path = Entities:FindByName(nil, "path0")
 
     local function SpawnCreep()
@@ -42,9 +34,6 @@ function _ADDON:StartNextWave()
             local spawnPoint = path:GetAbsOrigin()
             local creep = self:CreateUnit(creepName, DOTA_TEAM_BADGUYS, path:GetAbsOrigin())
             if creep then
-                local cHealth = math.floor(creep:GetHealth() * health_mult)
-                creep:SetMaxHealth(150)
-                creep:SetHealth(150)
                 creep:SetInitialGoalEntity(path)
                 creep:AddNewModifier(creep, nil, "modifier_phased", nil)
             else
