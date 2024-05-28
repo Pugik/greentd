@@ -1,33 +1,48 @@
 "DOTAUnits"
 {
-    "npc_td_tower_water"
+    "npc_td_siege_tower_1"
     {
-        "BaseClass"                     "npc_dota_tower"
-        "Model"                         "models/props_structures/tower_good.vmdl"
+        "BaseClass"               "npc_dota_creature"
+        
         "SoundSet"                      "Tower.Water"
-        "Level"                         "1"
+		
+        "ModelScale"				"1.2"
+        "Model"                         "models/props_structures/tower_good.vmdl"
+
+        //"PedestalOffset"            "0"
+		//"PedestalModelScale"        "1.50"
+		//"PedestalModel"             "models/props_teams/logo_dire_winter_small.vmdl"
+
+        "MinimapIcon"				"minimap_tower135"
+		"MinimapIconSize"			"200"
+
         "Ability1"                      ""
         "Ability2"                      ""
         "Ability3"                      ""
         "Ability4"                      ""
+
+        "Level"                         "1"
+        
         "ArmorPhysical"                 "0"
+        
         "AttackCapabilities"            "DOTA_UNIT_CAP_RANGED_ATTACK"
         "AttackDamageMin"               "20"
         "AttackDamageMax"               "20"
         "AttackRate"                    "1.0"
         "AttackRange"                   "1024"
         "ProjectileModel"               "particles/base_attacks/ranged_tower_good.vpcf"
-        "ProjectileSpeed"               "900"
-        "BountyGoldMin"                 "300"
-        "BountyGoldMax"                 "400"
-        "RingRadius"                    "80"
+        "ProjectileSpeed"               "1200"
+        
+        "BountyGoldMin"                 "0"
+        "BountyGoldMax"                 "0"
+        "RingRadius"                    "64"
         "HealthBarOffset"               "260"
         "StatusHealth"                  "100"
         "StatusHealthRegen"             "0.0"
         "MovementCapabilities"          "DOTA_UNIT_CAP_MOVE_NONE"
         "BoundsHullName"                "DOTA_HULL_SIZE_TOWER"
-        "VisionDaytimeRange"            "1900"
-        "VisionNighttimeRange"          "800"
+        "VisionDaytimeRange"            "2000"
+        "VisionNighttimeRange"          "2000"
         "AttackDesire"                  "1.0"
     }
 }

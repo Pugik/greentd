@@ -5,11 +5,11 @@
 {
     "npc_dota_hero_wisp"
 	{
-        "Ability1"		"ability_build_tower"
-		"Ability2"		"generic_hidden"		
-		"Ability3"		"generic_hidden"
-		"Ability4"		"generic_hidden"
-		"Ability5"		"generic_hidden"
+        "Ability1"		"ability_siege_tower"
+		"Ability2"		"ability_air_tower"		
+		"Ability3"		"ability_aura_tower"
+		"Ability4"		"ability_poison_tower"
+		"Ability5"		"ability_frost_tower"
 		"Ability6"		"generic_hidden"
 		"Ability7"		"generic_hidden"
 		"Ability8"		"generic_hidden"

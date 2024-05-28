@@ -20,14 +20,17 @@ function _ADDON:InitAddon()
 	}
 	
 	local modifiersList = {
-		modifier_tax = LUA_MODIFIER_MOTION_NONE
+		modifier_status_tower = LUA_MODIFIER_MOTION_NONE
 	}
     
 	_RegisterListeners(self, listenersList)
-	--_RegisterModifier(self, modifiersList)
+	_RegisterModifier(self, modifiersList)
+
+	LinkLuaModifier("modifier_ground_tower", "addon/modifiers/modifier_status_tower.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_air_tower", "addon/modifiers/modifier_status_tower.lua", LUA_MODIFIER_MOTION_NONE)
 
 	_DebugDeepPrint("Listeners: ", self.GameEventListeners)
-	--_DebugDeepPrint("Modifiers: ", self.ModifiersList)
+	_DebugDeepPrint("Modifiers: ", self.ModifiersList)
 end
 
 
@@ -37,7 +40,7 @@ function _ADDON:OnNPCSpawned(keys)
 	if not self.all_units then self.all_units = {} end
 	self.all_units[npc] = npc:GetUnitName()
 	
-	if npc:IsRealHero() and not npc.firstTime then npc.firstTime = true BuildingHelper:AddUnit(npc) end
+	if npc:IsRealHero() then npc:AddNewModifier(npc, nil, "modifier_phased", nil) end
 end
 
 function _ADDON:OnEntityKilled(keys)
