@@ -36,7 +36,8 @@ end
 function ability_build_tower:CreateTower(className, isAir)
     local caster = self:GetCaster()
     local casterid = caster:GetPlayerID()
-    local target = self:GetCursorPosition()
+    self.target = self:GetCursorPosition()
+    local target = self.target
     
     if self:IsPointInForbiddenZone(target) or self:IsTowerAtLocation(target) then
         self:ReturnGold(caster)
@@ -73,8 +74,6 @@ end
 
 ability_siege_tower = class(ability_build_tower)
 
-function ability_siege_tower:GetGoldCost(level) return self:GetSpecialValueFor("price") end 
-
 function ability_siege_tower:OnSpellStart()
 	if IsServer() then self:CreateTower("npc_td_siege_tower_1", false) end
 end
@@ -83,40 +82,8 @@ end
 
 ability_air_tower = class(ability_build_tower)
 
-function ability_air_tower:GetGoldCost(level) return self:GetSpecialValueFor("price") end 
-
 function ability_air_tower:OnSpellStart()
 	if IsServer() then self:CreateTower("npc_td_siege_tower_1", true) end
-end
-
------------------------------------------------------------------------------
-
-ability_aura_tower = class(ability_build_tower)
-
-function ability_aura_tower:GetGoldCost(level) return self:GetSpecialValueFor("price") end 
-
-function ability_aura_tower:OnSpellStart()
-	if IsServer() then self:CreateTower("npc_td_siege_tower_1", false) end
-end
-
------------------------------------------------------------------------------
-
-ability_poison_tower = class(ability_build_tower)
-
-function ability_poison_tower:GetGoldCost(level) return self:GetSpecialValueFor("price") end 
-
-function ability_poison_tower:OnSpellStart()
-	if IsServer() then self:CreateTower("npc_td_siege_tower_1", false) end
-end
-
------------------------------------------------------------------------------
-
-ability_frost_tower = class(ability_build_tower)
-
-function ability_frost_tower:GetGoldCost(level) return self:GetSpecialValueFor("price") end 
-
-function ability_frost_tower:OnSpellStart()
-	if IsServer() then self:CreateTower("npc_td_siege_tower_1", false) end
 end
 
 -----------------------------------------------------------------------------

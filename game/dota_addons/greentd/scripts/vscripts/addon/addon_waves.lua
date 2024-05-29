@@ -18,6 +18,22 @@ local waves = {
             {name = "npc_td_creep_ground_zombie", count = 5},
             {name = "npc_td_creep_air_test", count = 10}
         }
+    },
+    {
+        creeps = {
+            {name = "npc_td_creep_air_test", count = 20}
+        }
+    },
+    {
+        creeps = {
+            {name = "npc_td_creep_ground_zombie", count = 50},
+            {name = "npc_td_creep_air_test", count = 10}
+        }
+    },
+    {
+        creeps = {
+            {name = "npc_td_creep_air_test", count = 50}
+        }
     }
 }
 
@@ -45,7 +61,7 @@ function _ADDON:StartNextWave()
         local creep = self:CreateUnit(creepName, DOTA_TEAM_BADGUYS, spawnPoint)
         if creep then
             creep:SetInitialGoalEntity(path)
-            creep:AddNewModifier(creep, nil, "modifier_phased", nil)
+            creep:AddNewModifier(creep, nil, "modifier_phased_custom", nil)
         else
             print("[ERROR] Creep with classname: ", creepName, " can't appear.")
         end

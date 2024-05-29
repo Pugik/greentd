@@ -1,42 +1,8 @@
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 
+#base "addon/units/heroes.txt"
+
 "DOTAHeroes"
 {
-    "npc_dota_hero_wisp"
-	{
-        "Ability1"		"ability_siege_tower"
-		"Ability2"		"ability_air_tower"		
-		"Ability3"		"ability_aura_tower"
-		"Ability4"		"ability_poison_tower"
-		"Ability5"		"ability_frost_tower"
-		"Ability6"		"generic_hidden"
-		"Ability7"		"generic_hidden"
-		"Ability8"		"generic_hidden"
-		"Ability10"		"generic_hidden"
-		"Ability11"		"generic_hidden"
-		"Ability12"		"generic_hidden"
-		"Ability13"		"generic_hidden"
-		"Ability14"		"generic_hidden"
-		"Ability15"		"generic_hidden"
-		"Ability16"		"generic_hidden"
-		"Ability17"		"generic_hidden"
-
-        "MovementSpeed"		"1000"
-        "MovementTurnRate"		"5"
-        "AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-
-		"AttributePrimary"		"DOTA_ATTRIBUTE_ALL"
-		"AttributeBaseStrength"		"0"
-		"AttributeStrengthGain"		"0"
-		"AttributeBaseAgility"		"0"
-		"AttributeAgilityGain"		"0"
-		"AttributeBaseIntelligence"	"0"
-		"AttributeIntelligenceGain"	"0"
-
-		"StatusHealth"				"100"
-		"StatusHealthRegen"			"0"	
-		"StatusMana"				"0"	
-		"StatusManaRegen"			"0"	
-    }
 }

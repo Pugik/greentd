@@ -5,6 +5,7 @@ if not _G._ADDON then _G._ADDON = {} end
 require("base/global")
 require("base/settings")
 
+require("addon/addon_settings")
 require("addon/addon_func")
 require("addon/addon_const")
 
@@ -15,24 +16,16 @@ function _ADDON:InitAddon()
 	local listenersList = {
 		npc_spawned = "OnNPCSpawned",
 		entity_killed = "OnEntityKilled",
-		dota_on_hero_finish_spawn = "OnHeroFinishSpawn",
 		game_rules_state_change = "OnGameRulesStateChanged"
 	}
-	
-	local modifiersList = {
-		modifier_status_tower = LUA_MODIFIER_MOTION_NONE
-	}
-    
+
+	local modifiersList = _GetModifiersList()
+
 	_RegisterListeners(self, listenersList)
 	_RegisterModifier(self, modifiersList)
-
-	LinkLuaModifier("modifier_ground_tower", "addon/modifiers/modifier_status_tower.lua", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_air_tower", "addon/modifiers/modifier_status_tower.lua", LUA_MODIFIER_MOTION_NONE)
-
 	_DebugDeepPrint("Listeners: ", self.GameEventListeners)
 	_DebugDeepPrint("Modifiers: ", self.ModifiersList)
 end
-
 
 function _ADDON:OnNPCSpawned(keys)
 	local npc
@@ -40,7 +33,28 @@ function _ADDON:OnNPCSpawned(keys)
 	if not self.all_units then self.all_units = {} end
 	self.all_units[npc] = npc:GetUnitName()
 	
-	if npc:IsRealHero() then npc:AddNewModifier(npc, nil, "modifier_phased", nil) end
+	if npc:IsRealHero() then 
+		npc:AddNewModifier(npc, nil, "modifier_speed_cap", nil)
+		npc:AddNewModifier(npc, nil, "modifier_phased_custom", nil)
+		
+		local teleport_item = npc:FindItemInInventory("item_scroll") 
+		if teleport_item then npc:RemoveItem(teleport_item) end
+
+		npc:SetAbilityPoints(0)
+
+		for i = 0, npc:GetAbilityCount() - 1 do
+			local ability = npc:GetAbilityByIndex(i)
+			if not ability then return end
+			
+			local ability_name = ability:GetName()
+
+			if string.sub(ability_name, 1, string.len("ability")) == "ability" then 
+				npc:FindAbilityByName(ability_name):SetLevel(1)
+			else
+				npc:RemoveAbility(ability_name)
+			end
+		end
+	end
 end
 
 function _ADDON:OnEntityKilled(keys)
@@ -50,20 +64,6 @@ function _ADDON:OnEntityKilled(keys)
 	if self.all_units[victim] then self.all_units[victim] = nil end
 end
 
-function _ADDON:OnHeroFinishSpawn(keys)
-	local hero = EntIndexToHScript(keys.heroindex)
-	local path = Entities:FindByName(nil, "path0")
-	
-	--[[
-	for i = 1, 1 do
-		local unit = self:CreateUnit("lion_dance", DOTA_TEAM_BADGUYS, path:GetAbsOrigin())
-		unit:SetInitialGoalEntity(path)
-	end
-	]]
-
-	--self:DebugParseUnitByName(nil, nil)
-end
-
 function _ADDON:OnGameRulesStateChanged(keys)
 	local CurrentState = GameRules:State_Get()
 	if CurrentState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
@@ -71,6 +71,7 @@ function _ADDON:OnGameRulesStateChanged(keys)
 	end
 	if CurrentState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self:StartNextWave()
+		GameRules:SetTimeOfDay(0.251)
 	end
 end
 

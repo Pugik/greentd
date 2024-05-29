@@ -1,13 +1,19 @@
 -- pugiko: https://steamcommunity.com/id/pepegi7/
 -- #============================================#
 
-function _RegisterModifier(Context, Modifiers)
+function _RegisterModifier(Context, Modifiers, Path)
     if not Context.ModifiersList then Context.ModifiersList = {} end
 
-    for modifierName, modifierMotion in pairs(Modifiers or {}) do
+    for modifierName, modifierData in pairs(Modifiers or {}) do
         if Context.ModifiersList[modifierName] then return end
 
-        LinkLuaModifier(modifierName, "addon/modifiers/" .. modifierName .. ".lua", modifierMotion)
+        local modifierMotion, customPath = unpack(modifierData)
+        if customPath then 
+            LinkLuaModifier(modifierName, customPath, modifierMotion) 
+        else
+            LinkLuaModifier(modifierName, "addon/modifiers/" .. modifierName .. ".lua", modifierMotion)
+        end
+
         Context.ModifiersList[modifierName] = true
     end
 end

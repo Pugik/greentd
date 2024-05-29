@@ -44,5 +44,8 @@
         "VisionDaytimeRange"            "2000"
         "VisionNighttimeRange"          "2000"
         "AttackDesire"                  "1.0"
+
+        "MovementSpeed"		            "100"
+		"MovementTurnRate"		        "1"
     }
 }
